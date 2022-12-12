@@ -11943,7 +11943,7 @@ async function run() {
       } else {
         org_arguments = {
           visibility: "selected",
-          selected_repository_ids: input_visibility.split(",").map(i => parseInt(i.trim()))
+          selected_repositoy_ids: input_visibility.split(",").map(i => i.trim())
         }
       }
     }
