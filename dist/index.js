@@ -11901,13 +11901,9 @@ const github = __nccwpck_require__(5438)
 const sodium = __nccwpck_require__(7637)
 
 class GithubLocation {
-  constructor(location_input, environment_input) {
+  constructor(location_input) {
     this.type = "repository"
     this.short_type = "Repo"
-    if (environment_input) {
-      this.type = "environment"
-      this.short_type = "Environment"
-    }
     if (!location_input) {
       const context = github.context
       this.data = context.repo
@@ -11932,12 +11928,10 @@ async function run() {
     const input_value = core.getInput("value")
 
     const input_location = core.getInput("location")
-    const input_environment = core.getInput("environment")
-    const secret_target = new GithubLocation(input_location, input_environment)
+    const secret_target = new GithubLocation(input_location)
 
     const input_pat = core.getInput("pa_token")
     const octokit = github.getOctokit(input_pat)
-
     const get_public_key = octokit.rest.actions[`get${secret_target.short_type}PublicKey`]
     const upsert_secret = octokit.rest.actions[`createOrUpdate${secret_target.short_type}Secret`]
 
@@ -11954,22 +11948,9 @@ async function run() {
       }
     }
 
-    // Add arguments needed for environment secrets
-    let environment_arguments = {}
-    if (secret_target.type == "environment") {
-
-      const { data: {id: repo_id }} = await octokit.rest.repos.get(secret_target.data);
-      core.info(`Found repo id ${repo_id} for '${secret_target}'`)
-
-      environment_arguments = {
-        repository_id: repo_id,
-        environment_name: input_environment
-      }
-    }
-
     // Retrieve repository public key and encrypt secret value
     core.info(`Retrieving public key for ${secret_target.type} '${secret_target}'`)
-    const { data: public_key } = await get_public_key({...secret_target.data, ...environment_arguments})
+    const { data: public_key } = await get_public_key(secret_target.data)
 
     core.info("Encrypting secret value")
     const plain_value_bytes = Buffer.from(input_value)
@@ -11984,8 +11965,7 @@ async function run() {
       secret_name: input_name,
       encrypted_value: signed_secret_value,
       key_id: public_key.key_id,
-      ...org_arguments,
-      ...environment_arguments
+      ...org_arguments
     })
 
     const response_codes = {
