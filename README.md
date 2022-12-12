@@ -5,13 +5,15 @@
 This action can create or update secrets in the GitHub Actions API. It supports
 both repository and organization secrets in a unified input syntax.
 
+Fork from: https://github.com/gliech/create-github-secret-action
+
 ## Usage
 
 Basic example (creates a secret in the repository where the workflow file is
 located):
 ```yaml
 steps:
-  - uses: gliech/create-github-secret-action@v1
+  - uses: gazab/create-github-secret-action@v1
     with:
       name: FRONT_DOOR_PASSWORD
       value: Eternia
@@ -21,7 +23,7 @@ steps:
 Create a secret in a different repository:
 ```yaml
 steps:
-  - uses: gliech/create-github-secret-action@v1
+  - uses: gazab/create-github-secret-action@v1
     with:
       location: horde-prime/spire-network
       name: BROADCAST_FREQUENCY
@@ -32,13 +34,25 @@ steps:
 Create a secret in an organization:
 ```yaml
 steps:
-  - uses: gliech/create-github-secret-action@v1
+  - uses: gazab/create-github-secret-action@v1
     with:
       location: united-states-air-force
       name: NUCLEAR_LAUNCH_CODES
       value: '00000000'
       org_visibility: all
       pa_token: ${{ secrets.PAT_STRATEGIC_AIR_COMMAND }}
+```
+
+Create an environment secret (in the repository where the workflow file is 
+located):
+```yaml
+steps:
+  - uses: gazab/create-github-secret-action@v1
+    with:
+      name: FORCE_DOME_PASSWORD
+      value: Brightmoon
+      pa_token: ${{ secrets.PA_TOKEN }}
+      environment: production
 ```
 
 ## Inputs
@@ -56,6 +70,10 @@ steps:
 Name of a GitHub repository or organization where you want to create/update a
 secret. Expects the notation `owner/repo` for repositories. Defaults to the
 repository that invoked the workflow.
+
+#### `environment`
+Name of the environment where you want to create/update a secret. Not valid
+for organizations and the environment must already exist.
 
 #### `pa_token`
 **(Required)** Personal access token with permission to modify repository or
