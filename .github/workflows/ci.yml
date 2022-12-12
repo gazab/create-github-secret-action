@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install nodejs
         uses: actions/setup-node@v2
@@ -35,7 +35,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifact
         uses: actions/download-artifact@v2
@@ -83,7 +83,7 @@ jobs:
       FOREIGN_REPO: ${{ secrets.FOREIGN_REPO }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifact
         uses: actions/download-artifact@v2
@@ -130,7 +130,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifact
         uses: actions/download-artifact@v2
@@ -161,7 +161,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifact
         uses: actions/download-artifact@v2
@@ -232,7 +232,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifact
         uses: actions/download-artifact@v2
@@ -261,7 +261,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifact
         uses: actions/download-artifact@v2
@@ -298,7 +298,7 @@ jobs:
       - test_environment_create
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
 
