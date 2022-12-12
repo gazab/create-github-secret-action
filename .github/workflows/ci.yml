@@ -194,13 +194,13 @@ jobs:
           name: main
           path: dist
 
-      - name: Update a secret
+      - name: Update a scoped secret
         id: self
         uses: ./
         with:
           location: ${{ secrets.FOREIGN_ORGANIZATION }}
           org_visibility: ${{ secrets.SCOPED_REPO_ID }}
-          name: CREATE_GITHUB_SECRET_ACTION_TEST
+          name: CREATE_GITHUB_SECRET_ACTION_SCOPED_TEST
           value: ${{ github.sha }}
           pa_token: ${{ secrets.PA_TOKEN_ORG_ADMIN }}
 
