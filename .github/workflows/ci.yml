@@ -181,14 +181,15 @@ jobs:
       - name: Parse repository id
         run: echo "REPOSITORY_ID=${{ fromJson(steps.get_repo.outputs.data).id }}" >> $GITHUB_ENV
 
-      - name: Create test environment
-        uses: octokit/request-action@v2.x
-        with:
-          route: PUT /repos/:repository/environments/:environment_name
-          repository: ${{ github.repository }}
-          environment_name: ${{ env.ENVIRONMENT_NAME }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.PA_TOKEN_PIPELINE }}
+      # Removed due to fine grained tokens not having access to PUT on this endpoint yet
+      # - name: Create test environment
+      #   uses: octokit/request-action@v2.x
+      #   with:
+      #     route: PUT /repos/:repository/environments/:environment_name
+      #     repository: ${{ github.repository }}
+      #     environment_name: ${{ env.ENVIRONMENT_NAME }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.PA_TOKEN_PIPELINE }}
 
       - name: Create an environment secret
         id: self
