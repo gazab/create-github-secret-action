@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/gazab/create-github-secret-action/compare/v1.4.10...v1.5.0) (2022-12-12)
+
+
+### Features
+
+* Add environment secret support ([#1](https://github.com/gazab/create-github-secret-action/issues/1)) ([4c73c8f](https://github.com/gazab/create-github-secret-action/commit/4c73c8f76f2fb4ec86af9b286c9acd71477b8d5d))
+
 ## [1.4.10](https://github.com/gliech/create-github-secret-action/compare/v1.4.9...v1.4.10) (2022-02-18)
 
 
