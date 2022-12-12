@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/gazab/create-github-secret-action/compare/v1.4.10...v1.5.0) (2022-12-12)
+
+
+### Features
+
+* Add environment secret support ([#1](https://github.com/gazab/create-github-secret-action/issues/1)) ([c2c6f48](https://github.com/gazab/create-github-secret-action/commit/c2c6f488d32a6f187f56db89014ccfc08ee89295))
+
+
+### Bug Fixes
+
+* Fix creating scoped org secrets ([#2](https://github.com/gazab/create-github-secret-action/issues/2)) ([11aef9f](https://github.com/gazab/create-github-secret-action/commit/11aef9f2babdabe3f3cc918126279a8a6443e1fe))
+
 ## [1.4.10](https://github.com/gliech/create-github-secret-action/compare/v1.4.9...v1.4.10) (2022-02-18)
 
 
