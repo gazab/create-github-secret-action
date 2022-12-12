@@ -12,7 +12,13 @@
   "keywords": [],
   "author": "gliech",
   "license": "MIT",
-  "repository": "github:gliech/create-github-secret-action",
+  "repository": "github:gazab/create-github-secret-action",
+  "contributors": [
+    {
+      "name": "gazab",
+      "url": "https://github.com/gazab"
+    }
+  ],
   "devDependencies": {
     "@google/semantic-release-replace-plugin": "1",
     "@semantic-release/changelog": "6",
